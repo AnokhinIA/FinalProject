@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Igor Anokhin">
+    <title>Справочник субъектов страхового дела</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/header.css}" rel="stylesheet">
+</head>
+
+<body>
+<main>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom" th:fragment="footer">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a th:href="@{/}" href="index.html" class="nav-link active" aria-current="page">Главная</a></li>
+                <li class="nav-item"><a th:href="@{/types}" href="types.html"  class="nav-link">Виды страхования</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Контакты</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">О проекте</a></li>
+            </ul>
+        </header>
+    </div>
+    <div class="b-example-divider"></div>
+    <div class="container">
+        <h1>Справочник субъектов страхового дела</h1>
+        <p class="lead">Данные по информации регулятора ЦБ РФ.</p>
+        <h2 class="mt-4">Перечень Страховщиков и брокеров</h2>
+        <div class="row mb-4">
+            <div class="col-3 themed-grid-col">Наименование Страховщика</div>
+            <div class="col-3 themed-grid-col">Адрес</div>
+            <div class="col-3 themed-grid-col">ИНН</div>
+            <div class="col-3 themed-grid-col">Вид деятельности</div>
+        </div>
+        <div class="row mb-4" th:each="insurer: ${insurers}">
+            <div class="col-sm-3 themed-grid-col" th:text="${insurer.name}">Наименование Страховщика</div>
+            <div class="col-sm-3 themed-grid-col" th:text="${insurer.address}">Адрес</div>
+            <div class="col-sm-3 themed-grid-col" th:text="${insurer.personalTaxReferenceNumber}">ИНН</div>
+            <div class="col-sm-3 themed-grid-col" th:text="${insurer.personalTaxReferenceNumber}">ИНН</div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

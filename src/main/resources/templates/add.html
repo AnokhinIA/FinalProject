@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{index :: head}">
+    <link th:href="@{/css/form-validation.css}" rel="stylesheet">
+</head>
+
+<body>
+<main>
+    <div class="container" th:insert="~{index :: footer}">>
+
+    </div>
+    <div class="b-example-divider"></div>
+    <div class="container">
+        <h1>Справочник субъектов страхового дела</h1>
+        <p class="lead">Данные по информации регулятора ЦБ РФ.</p>
+        <h2 class="mt-4">Перечень видов страхования</h2>
+        <div class="col-md-6">
+            <form method="post" th:action="@{/action/save}">
+                <label for="type" class="form-label">Укажите вид страхования</label>
+                <input type="text" maxlength="255" class="form-control" name="type" id="type"
+                       placeholder="" required th:value="${type.type}">
+                <input type="text" hidden name="id" id="id" th:value="${type.id}">
+                <input type="text" hidden name="status" id="status" th:value="${type.status}">
+                <div class="invalid-feedback" id="source-currency-value-invalid-feedback">
+                    Поле заполнено некорректно
+                </div>
+                <div>
+                    <p th:text="${type.errorMessage}">...</p>
+                </div>
+
+                <div class="row mb-2"></div>
+                <div class="col-md-6">
+                    <input type="submit" name="action" class="btn btn-success" value="Сохранить"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr class="my-4">
+
+
+</main>
+<script th:href="@{/js/form-validation.js}"></script>
+</body>
+</html>

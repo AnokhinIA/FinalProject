@@ -1,0 +1,60 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="Igor Anokhin" id="All-table-type">
+        <sqlFile relativeToChangelogFile="true" path="type-data.sql"/>
+    </changeSet>
+    <changeSet author="Igor Anokhin" id="All-table-insurer">
+        <insert tableName="insurers">
+            <!-- Id is auto incremented -->
+            <column name="federal_district" value="ЦФО"/>
+            <column name="address" value="119034, г. Москва, переулок Барыковский, дом 2"/>
+            <column name="name" value="Общество с ограниченной ответственностью Страховая Компания Чабб"/>
+            <column name="personal_tax_reference_number" value="7704311252"/>
+        </insert>
+        <insert tableName="insurers">
+            <!-- Id is auto incremented -->
+            <column name="federal_district" value="ЦФО"/>
+            <column name="address" value="121552, г. Москва, улица Островная, дом 4"/>
+            <column name="name" value="Страховое акционерное общество ВСК"/>
+            <column name="personal_tax_reference_number" value="7710026574"/>
+        </insert>
+        <insert tableName="insurers">
+            <!-- Id is auto incremented -->
+            <column name="federal_district" value="ЦФО"/>
+            <column name="address" value="121170, г. Москва, вн. тер. г. муниципальный округ Дорогомилово, пр-кт Кутузовский, д. 36, стр. 23, этаж 8, ком. 828-831"/>
+            <column name="name" value="Акционерное общество Страховая Компания ПОЛИС-ГАРАНТ"/>
+            <column name="personal_tax_reference_number" value="7736203789"/>
+        </insert>
+        <insert tableName="insurers">
+            <!-- Id is auto incremented -->
+            <column name="federal_district" value="ЦФО"/>
+            <column name="address" value="125047, г. Москва, улица Гашека, дом 6, помещение XII"/>
+            <column name="name" value="Акционерное общество Российская Национальная Перестраховочная Компания"/>
+            <column name="personal_tax_reference_number" value="7706440687"/>
+        </insert>
+        <insert tableName="insurers">
+            <!-- Id is auto incremented -->
+            <column name="federal_district" value="ЦФО"/>
+            <column name="address" value="109012, г. Москва, улица Никольская, дом 10"/>
+            <column name="name" value="Общество с ограниченной ответственностью СКОР ПЕРЕСТРАХОВАНИЕ"/>
+            <column name="personal_tax_reference_number" value="7710734055"/>
+        </insert>
+        <insert tableName="insurers">
+            <!-- Id is auto incremented -->
+            <column name="federal_district" value="ЦФО"/>
+            <column name="address" value="121087, г. Москва, проезд Багратионовский, дом 7, корпус 11"/>
+            <column name="name" value="Общество с ограниченной ответственностью Зетта Страхование"/>
+            <column name="personal_tax_reference_number" value="7710280644"/>
+        </insert>
+        <!--insert tableName="insurance_list">
+
+            <column name="type_id" value="1"/>
+            <column name="insurer_id" value="1"/>
+        </insert-->
+    </changeSet>
+
+</databaseChangeLog>

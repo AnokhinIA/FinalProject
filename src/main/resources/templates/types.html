@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{index :: head}">
+</head>
+
+<body>
+<main>
+    <div class="container" th:insert="~{index :: footer}">>
+
+    </div>
+    <div class="b-example-divider"></div>
+    <div class="container">
+        <h1>Справочник субъектов страхового дела</h1>
+        <p class="lead">Данные по информации регулятора ЦБ РФ.</p>
+        <h2 class="mt-4">Перечень видов страхования</h2>
+        <a class="btn btn-primary" th:href="@{/action/form}" href="add.html" role="button">
+            <img th:src="@{/images/icons/plus-square.svg}" width="32" height="32"/>
+            Добавить
+        </a>
+        <div class="row mb-2"></div>
+        <div class="row mb-1" >
+            <div class="col-1 themed-grid-col">Номер</div>
+            <div class="col-7 themed-grid-col">Вид страхования</div>
+            <div class="col-2 themed-grid-col">Удалить</div>
+            <div class="col-2 themed-grid-col">Редактировать</div>
+        </div>
+        <div class="row mb-1" th:each="type: ${types}">
+            <div class="col-1 themed-grid-col" th:text="${typeStat.count}">1</div>
+            <div class="col-7 themed-grid-col" th:text="${type.type}">Грузы</div>
+            <div class="col-2 themed-grid-col">
+                <a th:href="@{/action/delete/{id}(id = ${type.id})}">
+                <img th:src="@{/images/icons/trash.svg}" width="32" height="32"/>
+                </a>
+            </div>
+            <div class="col-2 themed-grid-col">
+                <a th:href="@{/action/edit/{id}(id = ${type.id})}">
+                <img th:src="@{/images/icons/pencil-square.svg}" width="32" height="32"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
