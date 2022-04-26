@@ -1,13 +1,68 @@
 -- Заполняем таблицу видов страхования
-insert into insurance_type_list(type, code) values ('Страхование грузов', 'CG');
-insert into insurance_type_list(type, code) values ('Страхование от несчастных случаев и болезней', 'НС');
-insert into insurance_type_list(type, code) values ('Медицинское страхование', 'Мед');
-insert into insurance_type_list(type, code) values ('Страхование средств наземного транспорта (за исключением средств железнодорожного транспорта)', '');
-insert into insurance_type_list(type, code) values ('Страхование средств воздушного транспорта', '');
-insert into insurance_type_list(type, code) values ('Страхование средств водного транспорта', '');
+insert into insurance_type_list(type, code) values ('Медицинское страхование', 'CG');
+insert into insurance_type_list(type, code) values ('Обязательное государственное страхование жизни и здоровья военнослужащих, граждан, призванных на военные сборы, лиц рядового и начальствующего состава органов внутренних дел Российской Федерации, Государственной противопожарной службы, органов по контролю за оборотом наркотических средств и психотропных веществ, сотрудников учреждений и органов уголовно-исполнительной системы', 'НС');
+insert into insurance_type_list(type, code) values ('Обязательное государственное страхование жизни и здоровья военнослужащих, граждан, призванных на военные сборы, лиц рядового и начальствующего состава органов внутренних дел Российской Федерации, Государственной противопожарной службы, сотрудников учреждений и органов уголовно-исполнительной системы, сотрудников войск национальной гвардии Российской Федерации, сотрудников органов принудительного исполнения Российской Федерации', 'Мед');
+insert into insurance_type_list(type, code) values ('Обязательное медицинское страхование', '');
+insert into insurance_type_list(type, code) values ('Обязательное страхование гражданской ответственности владельца опасного объекта за причинение вреда в результате аварии на опасном объекте', '');
+insert into insurance_type_list(type, code) values ('Обязательное страхование гражданской ответственности владельцев транспортных средств', '');
 insert into insurance_type_list(type, code) values ('Сельскохозяйственное страхование (страхование урожая, сельскохозяйственных культур, многолетних насаждений, животных)', '');
 insert into insurance_type_list(type, code) values ('Страхование имущества юридических лиц, за исключением транспортных средств и сельскохозяйственного страхования средств железнодорожного транспорта', '');
+insert into insurance_type_list(type, code) values ('Обязательное страхование гражданской ответственности перевозчика за причинение при перевозках вреда жизни, здоровью, имуществу пассажиров', '');
+insert into insurance_type_list(type, code) values ('Пенсионное страхование', '');
 insert into insurance_type_list(type, code) values ('Страхование гражданской ответственности владельцев автотранспортных средств', '');
-insert into insurance_type_list(type, code) values ('Страхование гражданской ответственности владельцев средств воздушного транспорта', '');
 insert into insurance_type_list(type, code) values ('Страхование гражданской ответственности владельцев средств водного транспорта', '');
+insert into insurance_type_list(type, code) values ('Страхование гражданской ответственности владельцев средств воздушного транспорта', '');
+insert into insurance_type_list(type, code) values ('Страхование гражданской ответственности владельцев средств железнодорожного транспорта', '');
+insert into insurance_type_list(type, code) values ('Страхование гражданской ответственности за неисполнение обязательств по договору', '');
+insert into insurance_type_list(type, code) values ('Страхование гражданской ответственности за причинение вреда вследствие недостатков товаров, работ, услуг', '');
+insert into insurance_type_list(type, code) values ('Страхование гражданской ответственности за причинение вреда третьим лицам', '');
+insert into insurance_type_list(type, code) values ('Страхование гражданской ответственности организаций, эксплуатирующих опасные объекты', '');
+insert into insurance_type_list(type, code) values ('Страхование грузов', '');
+insert into insurance_type_list(type, code) values ('Страхование жизни на случай смерти, дожития до определенного возраста или срока либо наступления иного события', '');
+insert into insurance_type_list(type, code) values ('Страхование жизни с условием периодических страховых выплат (ренты, аннуитетов) и (или) с участием страхователя в инвестиционном доходе страховщика', '');
+insert into insurance_type_list(type, code) values ('Страхование имущества граждан, за исключением транспортных средств', '');
+insert into insurance_type_list(type, code) values ('Страхование от несчастных случаев и болезней', '');
+insert into insurance_type_list(type, code) values ('Страхование предпринимательских рисков', '');
+insert into insurance_type_list(type, code) values ('Страхование средств водного транспорта', '');
+insert into insurance_type_list(type, code) values ('Страхование средств воздушного транспорта', '');
+insert into insurance_type_list(type, code) values ('Страхование средств железнодорожного транспорта', '');
+insert into insurance_type_list(type, code) values ('Страхование средств наземного транспорта (за исключением средств железнодорожного транспорта)', '');
+insert into insurance_type_list(type, code) values ('Страхование финансовых рисков', '');
+
+
+-- Заполняем таблицу видов бизнеса
+-- Виды деятельности (заполняется в случае выдачи бланка лицензии по форме,
+-- установленной Указанием Банка России от 27.11.2018 № 4974-У
+-- «О форме бланка лицензии на осуществление страховой деятельности и о порядке
+-- направления лицензии на осуществление страховой деятельности субъекту страхового дела»)
+insert into line_of_business(line_of_business_name) values ('Добровольное личное страхование, за исключением добровольного страхования жизни');
+insert into line_of_business(line_of_business_name) values ('Взаимное страхование');
+insert into line_of_business(line_of_business_name) values ('Добровольное имущественное страхование');
+insert into line_of_business(line_of_business_name) values ('Добровольное страхование жизни');
+insert into line_of_business(line_of_business_name) values ('Обязательное государственное страхование жизни и здоровья военнослужащих в соответствии с федеральным законом от 28.03.1998 № 52-ФЗ');
+insert into line_of_business(line_of_business_name) values ('Обязательное медицинское страхование');
+insert into line_of_business(line_of_business_name) values ('Обязательное страхование гражданской ответственности владельца опасного объекта за причинение вреда в результате аварии на опасном объекте');
+insert into line_of_business(line_of_business_name) values ('Обязательное страхование гражданской ответственности владельцев транспортных средств');
+insert into line_of_business(line_of_business_name) values ('Обязательное страхование гражданской ответственности перевозчика за причинение при перевозках вреда жизни, здоровью, имуществу пассажиров');
+insert into line_of_business(line_of_business_name) values ('Перестрахование');
+insert into line_of_business(line_of_business_name) values ('Посредническая деятельность в качестве страхового брокера');
+insert into line_of_business(line_of_business_name) values ('Cтраховая брокерская деятельность');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

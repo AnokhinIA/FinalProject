@@ -9,18 +9,50 @@
     + Федеральный округ |federal_district
     Субъект федерации |  sub_federal_entity
     Рег. Номер | registration_number
-    Наименование субъекта страхового дела | name
-    Местонахождение	Новый адрес (при наличии)| address
-    Средства связи| mean_of_communication
-    ИНН	ОГРН/ОГРНИП| personal_tax_reference_number
+    + Наименование субъекта страхового дела | name
+    + Местонахождение	Новый адрес (при наличии)| address
+    +Средства связи| mean_of_communication
+    + ИНН	ОГРН/ОГРНИП| personal_tax_reference_number
     Лицензия | licence
     Виды деятельности |  line_of_business
-    Виды страхования, осуществляемые в рамках вида деятельности | class_of_insurance
+    Виды страхования, осуществляемые в рамках вида деятельности | insurance_type
     TODO Требуется нормализовать таблицу, у каждого страховщика может быть множенство видов стрвхования
     Номер лицензии | number_of_licence
     Дата выдачи | date_of_issue
     Статус |status
     -->
+    <changeSet author="Igor Anokhin" id="Create-table-line_of_business">
+    <preConditions>
+        <not>
+            <tableExists tableName="line_of_business"/>
+        </not>
+    </preConditions>
+        <createTable tableName="line_of_business">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="line_of_business_name" type="VARCHAR(500)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Igor Anokhin" id="Create-table-federal_district">
+        <preConditions>
+            <not>
+                <tableExists tableName="federal_district"/>
+            </not>
+        </preConditions>
+        <createTable tableName="federal_district">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="federal_district_name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
     <changeSet author="Igor Anokhin" id="Create-table-insurers">
         <preConditions>
             <not>
@@ -31,35 +63,37 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="federal_district" type="VARCHAR(255)">
-                <constraints nullable="true" unique="false"/>
-            </column>
             <column name="address" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="name" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
+            <column name="mean_of_communication" type="VARCHAR(255)">
+                <constraints nullable="true" unique="true"/>
+            </column>
             <column name="personal_tax_reference_number" type="BIGINT">
                 <constraints nullable="true" unique="false"/>
             </column>
-
-            <!--TODO Добавить все поля в соответствии с данными ЦБ РФ и нормализовать повторяющиеяся
-            Срок: до 10.04.2022
-          -->
+            <column name="federal_district_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="federal_district_id"
+                             references="federal_district(id)"/>
+            </column>
         </createTable>
     </changeSet>
+
     <changeSet author="Igor Anokhin" id="Create-table-insurance_type_list">
         <preConditions>
             <not>
                 <tableExists tableName="insurance_type_list"/>
             </not>
         </preConditions>
+
         <createTable tableName="insurance_type_list">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="type" type="VARCHAR(255)">
+            <column name="type" type="VARCHAR(500)">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="code" type="VARCHAR(255)">
@@ -67,7 +101,7 @@
             </column>
         </createTable>
     </changeSet>
-    <!--changeSet author="Igor Anokhin" id="Create-table-insurance_list">
+    <changeSet author="Igor Anokhin" id="Create-table-insurance_list">
         <preConditions>
             <not>
                 <tableExists tableName="insurance_list"/>
@@ -82,9 +116,30 @@
                              references="insurance_type_list(id)"/>
             </column>
             <column name="insurer_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_insurance_type_list_insurer_id"
+                             references="insurers(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Igor Anokhin" id="Create-table-business_line_list">
+        <preConditions>
+            <not>
+                <tableExists tableName="business_line_list"/>
+            </not>
+        </preConditions>
+        <createTable tableName="business_line_list">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="type_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_business_line_list_id"
+                             references="line_of_business(id)"/>
+            </column>
+            <column name="insurer_id" type="BIGINT">
                 <constraints nullable="false" foreignKeyName="fk_insurer_id"
                              references="insurers(id)"/>
             </column>
         </createTable>
-    </changeSet-->
+    </changeSet>
 </databaseChangeLog>

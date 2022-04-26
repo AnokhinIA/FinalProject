@@ -1,26 +1,29 @@
 package FinalProject.controller;
 
-import FinalProject.dto.InsuranceTypeForm;
 import FinalProject.model.InsuranceType;
 import FinalProject.model.Insurer;
 import FinalProject.service.InsuranceTypeService;
 import FinalProject.service.InsurerService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
+@RequiredArgsConstructor
 @Controller
 public class MainController {
     @Autowired
     private InsurerService insurerService;
     @Autowired
     private InsuranceTypeService insuranceTypeService;
+
+    private final RestTemplate restTemplate;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -36,4 +39,21 @@ public class MainController {
         return "types";
     }
 
+    /* Задание №39
+    Разработать аспект, который залогирует название и
+    параметры вызываемого метода прокси-объекта
+    через REST-эндпойнт отдельно стоящего сервиса.*/
+
+    @GetMapping("/aspect")
+    public String aspect(Model model){
+        String message = restTemplate.getForObject(UriComponentsBuilder.newInstance()
+                .scheme("http")
+                .host("localhost")
+                .port(8081)
+                .path("/getinsurers")
+                .queryParam("initiator", "Запрос из сервиса FinalProject")
+               .build(Map.of()), String.class);
+            model.addAttribute("aspect", message);
+        return "aspect";
+    }
 }

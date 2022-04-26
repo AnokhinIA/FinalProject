@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{index :: head}">
+</head>
+
+<body>
+<main>
+    <div class="container" th:insert="~{index :: footer}">>
+
+    </div>
+    <div class="b-example-divider"></div>
+    <div class="container">
+        <h1>Домашнее задание №39. Аспект</h1>
+        <div class="col-md-6" th:text="${aspect}">
+               Результат работа аспекта
+        </div>
+
+    </div>
+    <hr class="my-4">
+
+
+</main>
+</body>
+</html>

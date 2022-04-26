@@ -17,6 +17,8 @@
         <java.version>17</java.version>
         <webjar.version>3.3.1</webjar.version>
         <bootstrap.version>4.5.0</bootstrap.version>
+        <aspectjrt.version>${aspectjweaver.version}</aspectjrt.version>
+        <aspectjweaver.version>1.9.5</aspectjweaver.version>
     </properties>
     <dependencies>
         <dependency>
@@ -75,6 +77,7 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>

@@ -17,24 +17,17 @@ public class Insurer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String federalDistrict;
+    @OneToOne
+    private FederalDistrict federalDistrict;
     private String address;
     private String name;
+    private String mean_of_communication;
     private long personalTaxReferenceNumber;
-    /* Временно, в целях ускорения выполнения домашнего задание поле закомментировано.
-       Проблема возникала при реализации удаления строки таблицы types, так как в этом случае требовалось
-       каскадное удаление из таблицы insurance-list, в общем потом доделаю
-
     @OneToMany(mappedBy = "insurer")
-    List<InsuranceList> insuranceLists = new ArrayList<>();*/
+    List<InsuranceList> insuranceLists = new ArrayList<>();
+    @OneToMany(mappedBy = "insurer")
+    List<BusinessLineList> businessLineLists = new ArrayList<>();
 }
-/*
-    private String lineOfBusiness;
-    private boolean cargo;
-    private boolean motor;
-    private boolean hull;
-    private boolean property;
-*/
 
 /*
 По поводу вашего TODO комментария в файле schema.xml могу порекомендовать вынести множество видов страхования в отдельную таблицу
